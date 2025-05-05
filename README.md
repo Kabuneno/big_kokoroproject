@@ -1,63 +1,101 @@
-# Kokoro Kyrgyz TTS
+# Kyrgyz TTS Model Training
 
-Модель синтеза речи на кыргызском языке для Kokoro.
+This project implements a Text-to-Speech (TTS) model for the Kyrgyz language using the SpeechT5 architecture.
 
-## Установка
+## Project Structure
 
-1. Клонируйте репозиторий:
-```bash
-git clone https://github.com/your-username/kokoro-kyrgyz-tts.git
-cd kokoro-kyrgyz-tts
+```
+.
+├── train_kokoro_kyrgyz.py    # Main training script
+├── test_kokoro_kyrgyz.py     # Testing script
+├── requirements.txt          # Python dependencies
+├── environment.yml          # Conda environment file
+└── kyrgyz_dataset/          # Dataset directory
+    ├── audio_files/         # Audio files (not included in git)
+    └── metadata.json        # Dataset metadata
 ```
 
-2. Создайте виртуальное окружение и установите зависимости:
+## Prerequisites
+
+- Python 3.8 or higher
+- CUDA-capable GPU (recommended)
+- At least 16GB RAM
+- At least 50GB free disk space
+
+## Installation
+
+1. Clone the repository:
 ```bash
-conda create -n kokoro-kyrgyz python=3.8
-conda activate kokoro-kyrgyz
+git clone https://github.com/yourusername/kyrgyz-tts.git
+cd kyrgyz-tts
+```
+
+2. Create and activate a conda environment:
+```bash
+conda env create -f environment.yml
+conda activate kyrgyz-tts
+```
+
+Or install using pip:
+```bash
 pip install -r requirements.txt
 ```
 
-3. Скачайте датасет:
-```bash
-# Создайте директорию для датасета
-mkdir -p kyrgyz_dataset/audio_files
+## Dataset Preparation
 
-# Скачайте аудио файлы и metadata.json
-# (Инструкции по скачиванию датасета будут добавлены позже)
+1. Place your audio files in `kyrgyz_dataset/audio_files/`
+2. Ensure your `metadata.json` is properly formatted with the following structure:
+```json
+[
+    {
+        "audio_filename": "audio1.wav",
+        "transcription": "текст на кыргызском"
+    }
+]
 ```
 
-## Структура проекта
+## Training
 
-```
-kokoro-kyrgyz-tts/
-├── train_kokoro_kyrgyz.py    # Скрипт обучения
-├── requirements.txt          # Зависимости
-├── README.md                # Документация
-├── kyrgyz_dataset/          # Датасет
-│   ├── audio_files/        # Аудио файлы
-│   └── metadata.json       # Метаданные
-└── .gitignore              # Исключения для git
-```
-
-## Обучение модели
+To train the model:
 
 ```bash
 python train_kokoro_kyrgyz.py
 ```
 
-## Использование
+The training script will:
+- Load and preprocess the dataset
+- Initialize the SpeechT5 model
+- Train the model with the specified parameters
+- Save checkpoints and the final model
 
-После обучения модель будет сохранена в директории `kyrgyz-tts-model/`. Для использования с Kokoro:
+## Testing
 
-```python
-from kyrgyz_tts.kyrgyz_tts_interface import KyrgyzTTS
-kokoro.register_tts("kyrgyz", KyrgyzTTS())
-kokoro.speak("Ваш текст на кыргызском", language="kyrgyz")
+To test the trained model:
+
+```bash
+python test_kokoro_kyrgyz.py
 ```
 
-## Требования
+## Model Output
 
-- Python 3.8+
-- CUDA-совместимая видеокарта (рекомендуется)
-- Минимум 16GB RAM
-- Минимум 50GB свободного места на диске 
+The trained model will be saved in the `kyrgyz-tts-model/` directory with the following structure:
+- Model weights
+- Tokenizer
+- Vocoder
+- Speaker embeddings
+
+## Notes
+
+- Large audio files are not included in the git repository
+- Training logs are saved in `kokoro_training.log`
+- Model checkpoints are saved in `kyrgyz-tts-model/`
+- Wandb integration is available for training monitoring
+
+## License
+
+[Your chosen license]
+
+## Acknowledgments
+
+- Based on Microsoft's SpeechT5 architecture
+- Uses Hugging Face's Transformers library 
