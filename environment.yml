@@ -1,0 +1,16 @@
+name: kokoro_env  # Имя вашего окружения
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8  # Убедитесь, что версия Python совместима
+  - torch
+  - torchaudio
+  - transformers
+  - datasets
+  - sentencepiece
+  - numpy
+  - requests
+  - logging  # Входит в стандартную библиотеку Python
+  - shutil   # Входит в стандартную библиотеку Python
+  

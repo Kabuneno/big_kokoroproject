@@ -1,0 +1,99 @@
+# Audio files
+kyrgyz_dataset/audio_files/
+*.wav
+*.mp3
+*.ogg
+
+# Model files and caches
+kyrgyz-tts-model/
+model_cache/
+*.pt
+*.pth
+*.bin
+*.safetensors
+
+# Cache files
+*.arrow
+**/temp_processed/
+**/cache-*/
+**/__pycache__/
+
+# Output and logs
+output/
+whisper-kyrgyz-model/
+whisper-kyrgyz/
+*.log
+logs/
+test_results/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Wandb
+wandb/
+
+# Tensorboard
+runs/
+events.out.tfevents.*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# Wandb
+wandb/ 
